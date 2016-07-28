@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="frame" default="crazyflie" />
+  <arg name="tf_prefix" default="crazyflie" />
+  <arg name="joy_dev" default="/dev/input/js0" />
+  <arg name="camera" default="kinect2/qhd" />
+
+  <include file="$(find crazyflie_driver)/launch/crazyflie_server.launch">
+  </include>
+
+  <group ns="crazyflie">
+    <include file="$(find crazyflie_driver)/launch/crazyflie_add.launch">
+      <arg name="uri" default="radio://0/80/250K" />
+      <arg name="tf_prefix" value="crazyflie" />
+      <arg name="roll_trim" default="0.5" /> 
+      <arg name="pitch_trim" default="0.0" />
+      <arg name="enable_logging" value="False" />
+    </include>
+
+    <node name="joy" pkg="joy" type="joy_node">
+      <param name="dev" value="$(arg joy_dev)" />
+    </node>
+
+    <node name="joystick_controller" pkg="crazyflie_demo" type="controller.py">
+      <param name="use_crazyflie_controller" value="True" />
+    </node>
+  </group>
+
+  <node name="crazyflie_detector" pkg="crazyflie_autonomous" type="detect_crazyflie.py" output="screen" />
+
+  <!-- static transform between world and kinect with z offset of 1 meter and yaw of -pi/2
+       (rotation about Z), pitch of 0 (rotation about Y), and roll of pi/2 (rotation about X).  -->
+  <node pkg="tf" type="static_transform_publisher" name="baselink" args="0 0 1 -1.5708 0 -1.5708 /world /kinect2_link 50" />
+
+  <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
+    <arg name="publish_tf" value="true"/>          
+  </include>
+
+  <!-- set parameter on Parameter Server -->
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find crazyflie_autonomous)/urdf/kinect.urdf.xacro'" />
+
+</launch>

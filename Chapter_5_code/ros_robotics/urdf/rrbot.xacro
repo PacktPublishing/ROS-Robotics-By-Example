@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!-- Revolute-Revolute Manipulator -->
+<robot name="rrbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Constants for robot dimensions -->
+  <xacro:property name="width" value="0.1" />   <!-- Beams are square in length and width -->
+  <xacro:property name="height1" value="2" />   <!-- Link 1 -->
+  <xacro:property name="height2" value="1" />   <!-- Link 2 -->
+  <xacro:property name="height3" value="1" />   <!-- Link 3 -->
+  <xacro:property name="axle_offset" value="0.05" /> <!-- Space between joint and end of beam -->
+  <xacro:property name="damp" value="0.7" />    <!-- damping coefficient -->
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 ${height1/2}" rpy="0 0 0"/>
+      <geometry>
+	<box size="${width} ${width} ${height1}"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 ${height1/2}" rpy="0 0 0"/>
+      <geometry>
+	<box size="${width} ${width} ${height1}"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 ${height1/2}" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+	  ixx="1.0" ixy="0.0" ixz="0.0"
+	  iyy="1.0" iyz="0.0"
+	  izz="1.0"/>
+    </inertial>
+  </link>
+
+  <!-- Joint between Base Link and Middle Link -->
+  <joint name="joint_base_mid" type="revolute">
+    <parent link="base_link"/>
+    <child link="mid_link"/>
+    <origin xyz="0 ${width} ${height1 - axle_offset}" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="${damp}"/>
+    <limit effort="100.0" velocity="0.5" lower="-3.14" upper="3.14" />
+  </joint>
+
+  <!-- Middle Link -->
+  <link name="mid_link">
+    <visual>
+      <origin xyz="0 0 ${height2/2 - axle_offset}" rpy="0 0 0"/>
+      <geometry>
+	<box size="${width} ${width} ${height2}"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 ${height2/2 - axle_offset}" rpy="0 0 0"/>
+      <geometry>
+	<box size="${width} ${width} ${height2}"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 ${height2/2 - axle_offset}" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+	  ixx="1.0" ixy="0.0" ixz="0.0"
+	  iyy="1.0" iyz="0.0"
+	  izz="1.0"/>
+    </inertial>
+  </link>
+
+  <!-- Joint between Middle Link and Top Link -->
+  <joint name="joint_mid_top" type="revolute">
+    <parent link="mid_link"/>
+    <child link="top_link"/>
+    <origin xyz="0 ${width} ${height2 - axle_offset*2}" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="${damp}"/>
+    <limit effort="100.0" velocity="0.5" lower="-3.14" upper="3.14" />
+  </joint>
+
+  <!-- Top Link -->
+  <link name="top_link">
+    <visual>
+      <origin xyz="0 0 ${height3/2 - axle_offset}" rpy="0 0 0"/>
+      <geometry>
+	<box size="${width} ${width} ${height3}"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 ${height3/2 - axle_offset}" rpy="0 0 0"/>
+      <geometry>
+	<box size="${width} ${width} ${height3}"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 ${height3/2 - axle_offset}" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+	  ixx="1.0" ixy="0.0" ixz="0.0"
+	  iyy="1.0" iyz="0.0"
+	  izz="1.0"/>
+    </inertial>
+  </link>
+
+</robot>

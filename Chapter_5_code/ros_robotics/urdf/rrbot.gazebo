@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot>
+
+  <!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/rrbot</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+
+  <!-- Base Link -->
+  <gazebo reference="base_link">
+    <material>Gazebo/Red</material>
+  </gazebo>
+
+  <!-- Middle Link -->
+  <gazebo reference="mid_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Green</material>
+  </gazebo>
+
+  <!-- Top Link -->
+  <gazebo reference="top_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <!-- Gripper Elements -->
+  <gazebo reference="left_gripper">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+  </gazebo>
+    
+  <gazebo reference="right_gripper">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+  </gazebo>
+ 
+  <gazebo reference="left_tip" />
+  <gazebo reference="right_tip" />
+
+</robot>

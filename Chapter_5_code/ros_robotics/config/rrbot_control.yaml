@@ -1,0 +1,23 @@
+rrbot:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+  
+  # Position Controllers ---------------------------------------
+  joint_base_mid_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_base_mid
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint_mid_top_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_mid_top
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  left_gripper_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: left_gripper_joint
+    pid: {p: 1.0, i: 0.00, d: 0.0}
+  right_gripper_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: right_gripper_joint
+    pid: {p: 1.0, i: 0.00, d: 0.0}

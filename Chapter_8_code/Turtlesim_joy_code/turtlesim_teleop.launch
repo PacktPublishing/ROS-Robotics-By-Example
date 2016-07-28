@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- turtlesim and joy node-->
+  <node name="turtlesim" pkg="turtlesim" type="turtlesim_node"/>
+  <node name="joy" pkg="joy" type="joy_node"/>
+
+  <!-- turtlesim_joy node interfaces Xbox controller to turtlesim -->
+  <node name="turtlesim_joy" pkg="ros_robotics" type="turtlesim_joy.py" output="screen"/>
+
+</launch>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>ros_robotics</name>
+  <version>0.1.0</version>
+  <description>
+    The ros_robotics package contains URDF examples for a 2-wheeled robot, dd_robot
+    and a robot arm, rrbot.
+  </description>
+
+  <author>Carol Fairchild</author>
+  <maintainer email="cfairchild@fairchildrobotics.com">Carol Fairchild</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>gazebo_ros</exec_depend> 
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>rviz</exec_depend>
+  <exec_depend>xacro</exec_depend>
+</package>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="frame" default="crazyflie/base_link" />
+
+    <node name="crazyflie_window" pkg="crazyflie_autonomous" type="watcher.py" output="screen">
+      <param name="frame" value="$(arg frame)" />
+      <param name="cam_frame" value="kinect2_ir_optical_frame" />
+      <param name="rate" value="10" />
+    </node>   
+
+    <node name="crazyflie_controller" pkg="crazyflie_autonomous" type="control_crazyflie.py" output="screen">
+      <param name="frame" value="$(arg frame)" />
+      <rosparam command="load" file="$(find crazyflie_autonomous)/config/crazyflie2.yaml" />
+    </node>
+</launch>
