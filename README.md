@@ -1,7 +1,7 @@
 # ROS Robotics By Example
 By PacktPublishing
 
-This is the code repository for [Extending Docker](https://www.packtpub.com/hardware-and-creative/ros-robotics-example?utm_source=GitHub&utm_medium=Repository&utm_campaign=9781782175193), published by [Packt Publishing](https://www.packtpub.com/). It contains all the required files to run the code.
+This is the code repository for [ROS Robotics By Example](https://www.packtpub.com/hardware-and-creative/ros-robotics-example?utm_source=GitHub&utm_medium=Repository&utm_campaign=9781782175193), published by [Packt Publishing](https://www.packtpub.com/). It contains all the required files to run the code.
 
 ##What you need for this book
 The format of this book is intended for you to follow along and perform the 
