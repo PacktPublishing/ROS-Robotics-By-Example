@@ -8,6 +8,7 @@ from geometry_msgs.msg import Twist
 def move_circle():
 
     # Create a publisher which can "talk" to Turtlesim and tell it to move
+    rospy.init_node('move_circle_node', anonymous = True)
     pub = rospy.Publisher('turtle1/cmd_vel', Twist, queue_size=1)
      
     # Create a Twist message and add linear x and angular z values
